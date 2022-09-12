@@ -13,8 +13,8 @@ public class Main {
         log.debug("启动项目中。。。");
 
         ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
-        Customer customerBean = (Customer) context.getBean("customerBean");
-        customerBean.displayInfo();
+        Customer customer = (Customer) context.getBean("customerBean");
+        customer.displayInfo();
 
         ((ClassPathXmlApplicationContext) context).close();
 
