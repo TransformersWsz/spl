@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <bean id="customerBean" class="org.example.spl.Customer" init-method="init" destroy-method="close">
+        <constructor-arg name="name" value="魏素忠"></constructor-arg>
+        <constructor-arg name="age" value="26"></constructor-arg>
+        <constructor-arg name="email" ref="email"></constructor-arg>
+        <constructor-arg name="phone" ref="phone"></constructor-arg>
+    </bean>
+
+    <bean id="email" class="org.example.spl.Email">
+        <property name="username" value="swift"></property>
+        <property name="password" value="206209"></property>
+    </bean>
+
+    <bean id="phone" class="org.example.spl.Phone">
+        <property name="number" value="12334534523"></property>
+        <property name="merchant" value="中国移动"></property>
+    </bean>
+</beans>
