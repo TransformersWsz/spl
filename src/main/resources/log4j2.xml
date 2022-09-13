@@ -24,7 +24,8 @@
     </appenders>
     <loggers>
         <!-- Root Logger -->
-        <root level="DEBUG">
+        <!--        DEBUG-->
+        <root level="INFO">
             <!-- 引入了一个Console和System -->
             <appender-ref ref="Console" />
             <appender-ref ref="System" />

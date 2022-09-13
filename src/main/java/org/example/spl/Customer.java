@@ -42,7 +42,17 @@ public class Customer {
         System.out.println("About my phone: number is  "+ phone.getNumber() + ", merchant is " + phone.getMerchant() + ".");
     }
 
-    public void close() {
+
+    public void getExtraInfo(Float height, Float weight) {
+        System.out.println(name + " height: " + height + "m, weight: " + weight + "kg");
+    }
+
+    // 获取年龄和性别
+    public String getBasicInfo() {
+        return name + ":" + age;
+    }
+
+    public void destroy() {
         System.out.println("Customer Bean 正在销毁。。。");
     }
 }
