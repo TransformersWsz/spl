@@ -8,20 +8,20 @@
        http://www.springframework.org/schema/aop/spring-aop.xsd">
     
     <bean id="customerBean" class="org.example.spl.Customer" init-method="init" destroy-method="destroy">
-        <constructor-arg name="name" value="魏素忠"></constructor-arg>
-        <constructor-arg name="age" value="26"></constructor-arg>
-        <constructor-arg name="email" ref="email"></constructor-arg>
-        <constructor-arg name="phone" ref="phone"></constructor-arg>
+        <constructor-arg name="name" value="魏素忠" />
+        <constructor-arg name="age" value="26" />
+        <constructor-arg name="email" ref="email" />
+        <constructor-arg name="phone" ref="phone" />
     </bean>
 
     <bean id="email" class="org.example.spl.Email">
-        <property name="username" value="swift"></property>
-        <property name="password" value="206209"></property>
+        <property name="username" value="swift" />
+        <property name="password" value="206209" />
     </bean>
 
     <bean id="phone" class="org.example.spl.Phone">
-        <property name="number" value="12334534523"></property>
-        <property name="merchant" value="中国移动"></property>
+        <property name="number" value="12334534523" />
+        <property name="merchant" value="中国移动" />
     </bean>
     
     <!--    定义一个切面类-->
