@@ -8,7 +8,7 @@
        http://www.springframework.org/schema/aop/spring-aop.xsd">
     
     <bean id="customerBean" class="org.example.spl.Customer" init-method="init" destroy-method="destroy">
-        <constructor-arg name="name" value="魏素忠" />
+        <constructor-arg name="name" value="Swift" />
         <constructor-arg name="age" value="26" />
         <constructor-arg name="email" ref="email" />
         <constructor-arg name="phone" ref="phone" />
