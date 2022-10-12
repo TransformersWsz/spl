@@ -2,31 +2,21 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:context="http://www.springframework.org/schema/context"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
        http://www.springframework.org/schema/beans/spring-beans.xsd
        http://www.springframework.org/schema/aop
-       http://www.springframework.org/schema/aop/spring-aop.xsd">
+       http://www.springframework.org/schema/aop/spring-aop.xsd
+       http://www.springframework.org/schema/context
+       https://www.springframework.org/schema/context/spring-context.xsd">
     
     <bean id="customerBean" class="org.example.spl.Customer" init-method="init" destroy-method="destroy">
-        <constructor-arg name="name" value="Swift" />
-        <constructor-arg name="age" value="26" />
-        <constructor-arg name="email" ref="email" />
-        <constructor-arg name="phone" ref="phone" />
-    </bean>
-
-    <bean id="email" class="org.example.spl.Email">
-        <property name="username" value="swift" />
-        <property name="password" value="206209" />
-    </bean>
-
-    <bean id="phone" class="org.example.spl.Phone">
-        <property name="number" value="12334534523" />
-        <property name="merchant" value="中国移动" />
+        <constructor-arg name="username" value="Swift" />
+        <constructor-arg name="password" value="123434556" />
     </bean>
     
     <!--    定义一个切面类-->
     <bean id="logging" class="org.example.spl.Logging" />
-    
     <aop:config>
         <aop:aspect ref="logging">
             <aop:pointcut id="printExtraInfo" expression="execution(* org.example.spl.Customer.getExtraInfo(Float, Float)) and args(height, weight)"/>
@@ -35,7 +25,35 @@
             <aop:pointcut id="printBasicInfo" expression="execution(* org.example.spl.Customer.getBasicInfo())"/>
             <aop:after-returning pointcut-ref="printBasicInfo" returning="retVal" method="afterReturningAdvice"/>
         </aop:aspect>
-
-
     </aop:config>
+
+    <context:property-placeholder location="redis.properties"/>
+    <bean id="jedisPoolConfig" class="redis.clients.jedis.JedisPoolConfig">
+        <!-- 最小维持连接数 -->
+        <property name="maxIdle" value="${redis.pool.maxIdle}"/>
+        <!-- 最大可用连接数 -->
+        <property name="maxTotal" value="${redis.pool.maxTotal}"/>
+        <!-- 最大等待连接数 -->
+        <property name="maxWaitMillis" value="${redis.pool.maxWaitMills}"/>
+        <!-- 可用连接 -->
+        <property name="testOnBorrow" value="${redis.pool.testOnBorrow}"/>
+    </bean>
+    <bean id="connectionFactory" class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory">
+        <property name="poolConfig" ref="jedisPoolConfig"/>
+        <property name="hostName" value="${redis.host}"/>
+        <property name="port" value="${redis.port}"/>
+        <property name="timeout" value="${redis.timeout}"/>
+    </bean>
+    <bean id="redisTemplate" class="org.springframework.data.redis.core.RedisTemplate">
+        <property name="connectionFactory" ref="connectionFactory"/>
+        <property name="keySerializer">
+            <bean class="org.springframework.data.redis.serializer.StringRedisSerializer"/>
+        </property>
+        <property name="valueSerializer">
+            <bean class="org.springframework.data.redis.serializer.GenericJackson2JsonRedisSerializer"/>
+        </property>
+    </bean>
+
+    <context:component-scan base-package="org.example.spl.*"/>
+
 </beans>

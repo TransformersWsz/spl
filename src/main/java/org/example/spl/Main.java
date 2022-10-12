@@ -1,10 +1,13 @@
 package org.example.spl;
 
+import org.example.spl.controller.CustomerController;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.ValueOperations;
 
 public class Main {
 
@@ -13,14 +16,28 @@ public class Main {
         log.info("启动项目中。。。");
 
         ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+        CustomerController customerController = (CustomerController) context.getBean("customerController");
         Customer customer = (Customer) context.getBean("customerBean");
-        customer.displayInfo();
+        System.out.println(customerController.customerLogin(customer));
 
-        customer.getExtraInfo(1.83f, 77.0f);
-        customer.getBasicInfo();
+//        ValueOperations<String, Object> str = redisTemplate.opsForValue();
+//        str.set("name", "Swift");
+//        str.set("password", "123456");
+//        System.out.println((String) str.get("password"));
+
+//        Customer customer = (Customer) context.getBean("customerBean");
+//        customer.displayInfo();
+//
+//        customer.getExtraInfo(1.83f, 77.0f);
+//        customer.getBasicInfo();
+
+//        RedisUserService userService = context.getBean(RedisUserService.class);
+//        String key = "name";
+//        String value = userService.getString(key);
+//        System.out.println(value);
+
 
         ((ClassPathXmlApplicationContext) context).close();
 
-//        log.error("项目报错！！！");
     }
 }

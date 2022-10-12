@@ -1,55 +1,31 @@
 package org.example.spl;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+
+@Data
+@AllArgsConstructor
 public class Customer {
-    private String name;
-    private Integer age;
+    private String username;
+    private String  password;
 
-    private Email email;
-
-    private Phone phone;
 
     public void init() {
         System.out.println("Customer Bean 正在初始化。。。");
     }
 
-    public Customer(String name, Integer age, Email email, Phone phone) {
-        this.name = name;
-        this.age = age;
-        this.email = email;
-        this.phone = phone;
-    }
-
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Integer getAge() {
-        return age;
-    }
-
-    public void setAge(Integer age) {
-        this.age = age;
-    }
 
     public void displayInfo() {
-        System.out.println("Hello, my name is "+ name + ", age is " + age + ".");
-        System.out.println("About my email: username is  "+ email.getUsername() + ", password is " + email.getPassword() + ".");
-        System.out.println("About my phone: number is  "+ phone.getNumber() + ", merchant is " + phone.getMerchant() + ".");
+        System.out.println("Hello, my username is "+ username + ", password is " + password + ".");
     }
-
 
     public void getExtraInfo(Float height, Float weight) {
-        System.out.println(name + " height: " + height + "m, weight: " + weight + "kg");
+        System.out.println(username + " height: " + height + "m, weight: " + weight + "kg");
     }
 
-    // 获取年龄和性别
+    // 获取用户名和密码
     public String getBasicInfo() {
-        return name + ":" + age;
+        return username + ":" + password;
     }
 
     public void destroy() {
