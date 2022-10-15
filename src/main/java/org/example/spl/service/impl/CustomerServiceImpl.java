@@ -11,7 +11,6 @@ public class CustomerServiceImpl implements CustomerService {
     @Autowired
     CustomerDao customerDao;
 
-
     @Override
     public boolean customerLogin(Customer customer) {
         System.out.println(customer.getBasicInfo());
