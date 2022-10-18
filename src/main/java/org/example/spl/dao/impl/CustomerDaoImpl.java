@@ -17,6 +17,7 @@ public class CustomerDaoImpl implements CustomerDao {
         ValueOperations<String, Object> ops = redisTemplate.opsForValue();
         String username = (String) ops.get("name");
         String password = (String) ops.get("password");
-        return new Customer(username, password);
+        return null;
+//        return new Customer(username, password);
     }
 }

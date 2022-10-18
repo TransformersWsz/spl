@@ -13,9 +13,9 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public boolean customerLogin(Customer customer) {
-        System.out.println(customer.getBasicInfo());
+        System.out.println(customer.provideBasicInfo());
         Customer redisCustomer = customerDao.customerLogin(customer);
-        System.out.println(redisCustomer.getBasicInfo());
+        System.out.println(redisCustomer.provideBasicInfo());
         if (redisCustomer.getUsername() != null && redisCustomer.getUsername().equals(customer.getUsername())
             && redisCustomer.getPassword() != null && redisCustomer.getPassword().equals(customer.getPassword())) {
             return true;

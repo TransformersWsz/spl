@@ -11,8 +11,10 @@
        https://www.springframework.org/schema/context/spring-context.xsd">
     
     <bean id="customerBean" class="org.example.spl.Customer" init-method="init" destroy-method="destroy">
-        <constructor-arg name="username" value="Swift" />
-        <constructor-arg name="password" value="123434556" />
+        <property name="username" value="Swift"/>
+        <property name="password" value="123434556"/>
+<!--        <constructor-arg name="username" value="Swift" />-->
+<!--        <constructor-arg name="password" value="123434556" />-->
     </bean>
     
     <!--    定义一个切面类-->
@@ -22,7 +24,7 @@
             <aop:pointcut id="printExtraInfo" expression="execution(* org.example.spl.Customer.getExtraInfo(Float, Float)) and args(height, weight)"/>
             <aop:before pointcut-ref="printExtraInfo" method="beforeAdvice"/>
 
-            <aop:pointcut id="printBasicInfo" expression="execution(* org.example.spl.Customer.getBasicInfo())"/>
+            <aop:pointcut id="printBasicInfo" expression="execution(* org.example.spl.Customer.provideBasicInfo())"/>
             <aop:after-returning pointcut-ref="printBasicInfo" returning="retVal" method="afterReturningAdvice"/>
         </aop:aspect>
     </aop:config>

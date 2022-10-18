@@ -4,14 +4,16 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Data
-@AllArgsConstructor
+//@AllArgsConstructor
 public class Customer {
     private String username;
     private String  password;
 
+    private String address;
+
 
     public void init() {
-        System.out.println("Customer Bean 正在初始化。。。");
+        System.out.println("Customer Bean init...");
     }
 
 
@@ -24,11 +26,11 @@ public class Customer {
     }
 
     // 获取用户名和密码
-    public String getBasicInfo() {
+    public String provideBasicInfo() {
         return username + ":" + password;
     }
 
     public void destroy() {
-        System.out.println("Customer Bean 正在销毁。。。");
+        System.out.println("Customer Bean destroy...");
     }
 }

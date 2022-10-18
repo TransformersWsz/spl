@@ -13,7 +13,7 @@ public class Main {
 
     public static void main(String[] args) {
         Logger log = LogManager.getLogger(LogManager.ROOT_LOGGER_NAME);
-        log.info("启动项目中。。。");
+        log.info("starting project...");
 
         ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
         CustomerController customerController = (CustomerController) context.getBean("customerController");
@@ -29,7 +29,7 @@ public class Main {
 //        customer.displayInfo();
 //
 //        customer.getExtraInfo(1.83f, 77.0f);
-//        customer.getBasicInfo();
+//        customer.provideBasicInfo();
 
 //        RedisUserService userService = context.getBean(RedisUserService.class);
 //        String key = "name";
