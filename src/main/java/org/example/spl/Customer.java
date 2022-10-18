@@ -13,7 +13,7 @@ public class Customer {
 
 
     public void init() {
-        System.out.println("Customer Bean init...");
+        System.out.println("Customer Bean 初始化中...");
     }
 
 
